@@ -186,13 +186,7 @@ npm run build --prefix frontend
 npm run build --prefix admin
 ```
 
-## What Not to Upload to GitHub
 
-Do **not** commit these folders/files:
-
-- `node_modules/` (reinstall with `npm install`)
-- `.env` (contains secrets — recreate locally from the template above)
-- `dist/` (generated build output)
 
 ## License
 
