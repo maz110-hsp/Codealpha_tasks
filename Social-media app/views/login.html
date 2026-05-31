@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login to SocialApp - Connect with friends and share moments">
+  <title>Login - SocialApp</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="auth-page">
+  <div class="auth-container">
+    <div class="auth-card">
+      <h1 class="auth-logo">SocialApp</h1>
+      <p class="auth-subtitle">Connect with friends and share your moments</p>
+
+      <form id="loginForm" class="auth-form">
+        <div class="form-group">
+          <input type="text" id="loginUsername" name="username" placeholder="Username" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <input type="password" id="loginPassword" name="password" placeholder="Password" required autocomplete="current-password">
+        </div>
+        <div id="loginError" class="form-error" style="display:none"></div>
+        <button type="submit" id="loginBtn" class="btn btn-primary btn-full">Log In</button>
+      </form>
+
+      <div class="auth-divider"><span>OR</span></div>
+      <p class="auth-switch">Don't have an account? <a href="/register">Sign up</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const errorEl = document.getElementById('loginError');
+      errorEl.style.display = 'none';
+
+      const username = document.getElementById('loginUsername').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (data.success) {
+          window.location.href = data.redirect;
+        } else {
+          errorEl.textContent = data.error;
+          errorEl.style.display = 'block';
+        }
+      } catch (err) {
+        errorEl.textContent = 'Something went wrong. Please try again.';
+        errorEl.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

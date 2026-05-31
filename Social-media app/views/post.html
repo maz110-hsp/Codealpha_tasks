@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View Post - SocialApp">
+    <title>Post - SocialApp</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">SocialApp</a>
+            <div class="nav-search">
+                <input type="text" id="searchInput" placeholder="Search users..." autocomplete="off">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link" id="navHome" title="Home">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                        <polyline points="9 22 9 12 15 12 15 22" />
+                    </svg>
+                </a>
+                <a href="/explore" class="nav-link" id="navExplore" title="Explore">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
+                </a>
+                <a href="#" class="nav-link" id="navProfile" title="Profile">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                </a>
+                <button class="nav-link btn-icon" id="logoutBtn" title="Logout">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1-2-2h4" />
+                        <polyline points="16 17 21 12 16 7" />
+                        <line x1="21" y1="12" x2="9" y2="12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="feed-container">
+            <div id="postDetail"></div>
+            <div class="card" id="commentsSection" style="display:none">
+                <h3 class="comments-title">Comments</h3>
+                <form id="addCommentForm" class="comment-form" style="display:none">
+                    <input type="text" id="commentInput" placeholder="Write a comment..." required>
+                    <button type="submit" class="btn btn-primary btn-sm">Post</button>
+                </form>
+                <div id="commentsContainer"></div>
+            </div>
+            <div class="loading" id="loading" style="display:none">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const postId = window.location.pathname.split('/post/')[1];
+            if (postId) {
+                loadPostDetail(postId);
+            }
+        });
+    </script>
+</body>
+
+</html>

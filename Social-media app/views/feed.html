@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SocialApp - Your personalized social feed">
+    <title>SocialApp</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">SocialApp</a>
+            <div class="nav-search">
+                <input type="text" id="searchInput" placeholder="Search users..." autocomplete="off">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link active" id="navHome" title="Home">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                        <polyline points="9 22 9 12 15 12 15 22" />
+                    </svg>
+                </a>
+                <a href="/explore" class="nav-link" id="navExplore" title="Explore">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
+                </a>
+                <a href="#" class="nav-link" id="navProfile" title="Profile">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                </a>
+                <button class="nav-link btn-icon" id="logoutBtn" title="Logout">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1-2-2h4" />
+                        <polyline points="16 17 21 12 16 7" />
+                        <line x1="21" y1="12" x2="9" y2="12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="feed-container">
+            <!-- Create Post -->
+            <div class="card create-post-card" id="createPostCard">
+                <div class="create-post-header">
+                    <img src="/uploads/default-avatar.png" alt="avatar" class="avatar avatar-sm" id="createPostAvatar">
+                    <button class="create-post-input" id="openCreatePost">What's on your mind?</button>
+                </div>
+            </div>
+
+            <!-- Create Post Modal -->
+            <div class="modal-overlay" id="createPostModal" style="display:none">
+                <div class="modal card">
+                    <div class="modal-header">
+                        <h2>Create Post</h2>
+                        <button class="btn-close" id="closeCreatePost">&times;</button>
+                    </div>
+                    <form id="createPostForm">
+                        <textarea id="postContent" placeholder="What's on your mind?" rows="4" required></textarea>
+                        <div class="post-image-preview" id="postImagePreview" style="display:none">
+                            <img id="postImagePreviewImg" alt="preview">
+                            <button type="button" class="btn-close" id="removePostImage">&times;</button>
+                        </div>
+                        <div class="modal-footer">
+                            <label class="btn btn-secondary btn-sm" id="addImageLabel">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                    <circle cx="8.5" cy="8.5" r="1.5" />
+                                    <polyline points="21 15 16 10 5 21" />
+                                </svg>
+                                Photo
+                                <input type="file" id="postImageInput" accept="image/*" style="display:none">
+                            </label>
+                            <button type="submit" class="btn btn-primary btn-sm" id="submitPost">Post</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Posts Feed -->
+            <div id="postsContainer"></div>
+
+            <!-- Loading / Empty states -->
+            <div class="loading" id="loading" style="display:none">
+                <div class="spinner"></div>
+            </div>
+            <div class="empty-state" id="emptyState" style="display:none">
+                <p>No posts yet. Follow some people or create your first post!</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/app.js"></script>
+</body>
+
+</html>
